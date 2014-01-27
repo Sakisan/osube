@@ -1,0 +1,12 @@
+{
+  "index": {
+    "title": "Lorum Ipsum",
+    "subtitle": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+  },
+  "About": {
+    "title": "About Lorum Ipsum"
+  },
+  "Contact": {
+    "title": "Contact Lorum Ipsum"
+  }
+}

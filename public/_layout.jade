@@ -1,0 +1,19 @@
+!!!5
+html(lang="en")
+  head
+    title= title
+    meta(charset='utf-8')
+    link(type="text/css", rel="stylesheet", href="../css/foundation.min.css")
+    script(src="../js/vendor/modernizr.js")
+
+  body
+    != partial("_partials/header")
+    != partial("_partials/nav")
+
+    .wrapper
+      .main
+        .well
+          != yield
+
+    != partial("_partials/footer")
+    != partial("_partials/scripts")
