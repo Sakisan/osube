@@ -10,10 +10,8 @@ html(lang="en")
     != partial("_partials/header")
     != partial("_partials/nav")
 
-    .wrapper
-      .main
-        .well
-          != yield
+    .row
+      != yield
 
     != partial("_partials/footer")
     != partial("_partials/scripts")

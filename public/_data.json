@@ -1,12 +1,6 @@
 {
   "index": {
-    "title": "Lorum Ipsum",
+    "title": "osube",
     "subtitle": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-  },
-  "About": {
-    "title": "About Lorum Ipsum"
-  },
-  "Contact": {
-    "title": "Contact Lorum Ipsum"
   }
 }
