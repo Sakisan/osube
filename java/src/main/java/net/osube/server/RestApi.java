@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by: Antoine Snyers (antoine at atmire dot com)
+ * Created by: Sakisan (sakileon101 at gmail dot com)
  * Date: 30 Jan 2014
  */
 public class RestApi {
