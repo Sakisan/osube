@@ -1,0 +1,68 @@
+package net.osube.server;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Created by: Antoine Snyers (antoine at atmire dot com)
+ * Date: 30 Jan 2014
+ */
+public class RestApi {
+
+    private final String base_url = "https://osu.ppy.sh/api/";
+    private final String key;
+
+    public RestApi(String key) {
+        this.key = key;
+    }
+
+    private String getResponseText(String page, Map<String, String> parameters) {
+
+        String query = "?";
+        for (String key : parameters.keySet()) {
+            query += key + "=" + parameters.get(key) + "&";
+        }
+        query = query.substring(0, query.length() - 1);
+        String full_request = base_url + page + query;
+
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpGet httpget = new HttpGet(full_request);
+
+        String response_text = null;
+        try {
+            CloseableHttpResponse response = httpclient.execute(httpget);
+            InputStream inputStream = response.getEntity().getContent();
+            StringWriter writer = new StringWriter();
+            IOUtils.copy(inputStream, writer, "UTF-8");
+            response_text = writer.toString();
+            response.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return response_text;
+
+    }
+
+    public String getUser(String user, Mode mode) {
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("k", key);
+        map.put("u", user);
+        map.put("type", "string");
+
+        return getResponseText("get_user", map);
+    }
+
+    public String getUser(String user) {
+        return getUser(user, Mode.STANDARD);
+    }
+}

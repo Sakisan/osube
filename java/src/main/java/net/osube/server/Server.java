@@ -1,5 +1,9 @@
 package net.osube.server;
 
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
 /**
  * Created by: Antoine Snyers (antoine at atmire dot com)
  * Date: 28 Jan 2014
@@ -7,6 +11,10 @@ package net.osube.server;
 public class Server {
 
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        String key = args[0];
+        RestApi api = new RestApi(key);
+        System.out.println(api.getUser("Sakisan"));
+
     }
 }
