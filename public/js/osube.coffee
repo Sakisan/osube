@@ -1,6 +1,6 @@
 # CoffeeScript
 (($) ->
-  $("abbr.timeago").timeago()
+  $("span.timeago").timeago()
 
   the_end = 'end'
 ) jQuery

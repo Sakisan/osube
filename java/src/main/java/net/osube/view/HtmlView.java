@@ -34,12 +34,12 @@ public class HtmlView {
             html.append(classes(event));
             html.append("'>");
             html.append(displayHtml(event));
-            html.append("<abbr class='timeago' title='");
+            html.append("<span class='timeago' title='");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
             format.setTimeZone(TimeZone.getTimeZone("UTC"));
             String date = format.format(event.getDate());
             html.append(date);
-            html.append("'></abbr>");
+            html.append("'></span>");
             html.append("</div>");
         }
         try {
