@@ -45,18 +45,21 @@ public class RestApi {
             IOUtils.copy(inputStream, writer, "UTF-8");
             response_text = writer.toString();
             response.close();
-            if (response_text.charAt(0) == '[') {
-                response_text = response_text.substring(1);
-            }
-            if (response_text.charAt(response_text.length()-1) == ']') {
-                response_text = response_text.substring(0,response_text.length()-1);
-            }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
         return response_text;
 
+    }
+
+    private String removeListBracket(String response_text) {
+        if (response_text.charAt(0) == '[') {
+            response_text = response_text.substring(1);
+        }
+        if (response_text.charAt(response_text.length()-1) == ']') {
+            response_text = response_text.substring(0,response_text.length()-1);
+        }
+        return response_text;
     }
 
     public User getUser(String user_name, Mode mode) {
@@ -65,7 +68,7 @@ public class RestApi {
         map.put("u", user_name);
         map.put("type", "string");
         map.put("m", mode.getMode());
-        String json_response = getResponseText("get_user", map);
+        String json_response = removeListBracket(getResponseText("get_user", map));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(User.class, new User.Deserializer());
