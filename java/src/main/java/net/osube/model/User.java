@@ -17,26 +17,29 @@ public class User {
         public User deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             User user = new User();
-            user.user_id = jsonObject.get("user_id").getAsString();
-            user.username = jsonObject.get("username").getAsString();
-            user.count300 = jsonObject.get("count300").getAsString();
-            user.count100 = jsonObject.get("count100").getAsString();
-            user.count50 = jsonObject.get("count50").getAsString();
-            user.playcount = jsonObject.get("playcount").getAsString();
-            user.ranked_score = jsonObject.get("ranked_score").getAsString();
-            user.total_score = jsonObject.get("total_score").getAsString();
-            user.pp_rank = jsonObject.get("pp_rank").getAsString();
-            user.level = jsonObject.get("level").getAsString();
-            user.pp_raw = jsonObject.get("pp_raw").getAsString();
-            user.accuracy = jsonObject.get("accuracy").getAsString();
-            user.count_rank_ss = jsonObject.get("count_rank_ss").getAsString();
-            user.count_rank_s = jsonObject.get("count_rank_s").getAsString();
-            user.count_rank_a = jsonObject.get("count_rank_a").getAsString();
-            user.country = jsonObject.get("country").getAsString();
+            user.user_id = GsonUtils.getFieldAsString(jsonObject, "user_id");
+            user.username = GsonUtils.getFieldAsString(jsonObject, "username");
+            user.count300 = GsonUtils.getFieldAsString(jsonObject, "count300");
+            user.count100 = GsonUtils.getFieldAsString(jsonObject, "count100");
+            user.count50 = GsonUtils.getFieldAsString(jsonObject, "count50");
+            user.playcount = GsonUtils.getFieldAsString(jsonObject, "playcount");
+            user.ranked_score = GsonUtils.getFieldAsString(jsonObject, "ranked_score");
+            user.total_score = GsonUtils.getFieldAsString(jsonObject, "total_score");
+            user.pp_rank = GsonUtils.getFieldAsString(jsonObject, "pp_rank");
+            user.level = GsonUtils.getFieldAsString(jsonObject, "level");
+            user.pp_raw = GsonUtils.getFieldAsString(jsonObject, "pp_raw");
+            user.accuracy = GsonUtils.getFieldAsString(jsonObject, "accuracy");
+            user.count_rank_ss = GsonUtils.getFieldAsString(jsonObject, "count_rank_ss");
+            user.count_rank_s = GsonUtils.getFieldAsString(jsonObject, "count_rank_s");
+            user.count_rank_a = GsonUtils.getFieldAsString(jsonObject, "count_rank_a");
+            user.country = GsonUtils.getFieldAsString(jsonObject, "country");
 
-            user.events = jsonDeserializationContext.deserialize(jsonObject.get("events"), Event[].class);
-            for (Event event : user.events) {
-                event.setUser(user);
+            JsonElement jsonEvents = jsonObject.get("events");
+            if (jsonEvents.isJsonArray()) {
+                user.events = jsonDeserializationContext.deserialize(jsonEvents, Event[].class);
+                for (Event event : user.events) {
+                    event.setUser(user);
+                }
             }
             return user;
         }

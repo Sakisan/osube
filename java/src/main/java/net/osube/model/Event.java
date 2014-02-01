@@ -19,11 +19,12 @@ public class Event {
         public Event deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
             Event event = new Event();
-            event.display_html = jsonObject.get("display_html").getAsString();
-            event.beatmap_id = jsonObject.get("beatmap_id").getAsString();
-            event.beatmapset_id = jsonObject.get("beatmapset_id").getAsString();
+            event.display_html = GsonUtils.getFieldAsString(jsonObject, "display_html");
+            event.beatmap_id = GsonUtils.getFieldAsString(jsonObject, "beatmap_id");
+            event.beatmapset_id = GsonUtils.getFieldAsString(jsonObject, "beatmapset_id");
+            event.epicfactor =  GsonUtils.getFieldAsString(jsonObject, "epicfactor");
 
-            String date_string = jsonObject.get("date").getAsString();
+            String date_string =  GsonUtils.getFieldAsString(jsonObject, "date");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             format.setTimeZone(Server.TIME_ZONE);
             try {
@@ -32,7 +33,6 @@ public class Event {
                 e.printStackTrace();
             }
 
-            event.epicfactor = jsonObject.get("epicfactor").getAsString();
             return event;
         }
     }
