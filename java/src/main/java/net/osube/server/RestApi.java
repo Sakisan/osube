@@ -12,6 +12,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,7 +33,8 @@ public class RestApi {
 
         String query = "?";
         for (String key : parameters.keySet()) {
-            query += key + "=" + parameters.get(key) + "&";
+            String value = parameters.get(key);
+            query += key + "=" + URLEncoder.encode(value) + "&";
         }
         query = query.substring(0, query.length() - 1);
         String full_request = base_url + page + query;
