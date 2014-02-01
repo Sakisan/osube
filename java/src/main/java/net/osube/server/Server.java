@@ -20,7 +20,33 @@ public class Server {
         HARP_DIR = args[1];
         RestApi api = new RestApi(key);
 
-        String[] names = new String[]{"Sakisan", "KinkehW", "LarshMellow"};
+        // this list will go to a configuration file soon...
+        String[] names = new String[]
+                {
+                        "DrakRainbow",
+                        "GoldenWolf",
+                        "KinkehW",
+                        "Zetsubou",
+                        "LarshMellow",
+                        "Ouariasse",
+                        "lorenzo50000",
+                        "Sakisan",
+                        "Yentis",
+                        "Smexehh",
+                        "cpt starbuck",
+                        "DeathGaia",
+                        "DenObscure",
+                        "killmeebaby",
+                        "Mithrane",
+                        "Friendzone King",
+                        "H e r o",
+                        "Nonokeo",
+                        "Yee",
+                        "N3ON",
+                        "walid373",
+                        "EternalDream",
+                        "evillander"
+                };
         Set<User> users = new HashSet<>();
         for (String name : names) {
             users.add(api.getUser(name));
@@ -34,7 +60,6 @@ public class Server {
 
         HtmlView htmlView = new HtmlView();
         htmlView.render(events);
-
 
 
     }
