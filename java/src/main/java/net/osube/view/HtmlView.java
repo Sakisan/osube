@@ -34,7 +34,7 @@ public class HtmlView {
         }
         try {
             String dir_path = Server.HARP_DIR + File.separator + "public" + File.separator + "_events";
-            String file_path = dir_path + File.separator + "events.html";
+            String file_path = dir_path + File.separator + "events.jade";
             File file = new File(file_path);
             file.createNewFile();
             try (OutputStream stream = new FileOutputStream(file)) {
