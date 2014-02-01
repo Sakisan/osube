@@ -35,7 +35,7 @@ public class User {
             user.country = GsonUtils.getFieldAsString(jsonObject, "country");
 
             JsonElement jsonEvents = jsonObject.get("events");
-            if (jsonEvents.isJsonArray()) {
+            if (jsonEvents.isJsonArray() && !jsonEvents.isJsonNull()) {
                 user.events = jsonDeserializationContext.deserialize(jsonEvents, Event[].class);
                 for (Event event : user.events) {
                     event.setUser(user);

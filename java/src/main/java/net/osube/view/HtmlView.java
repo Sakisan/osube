@@ -63,12 +63,13 @@ public class HtmlView {
         classes.append(" epic-factor-");
         classes.append(event.getEpicfactor());
 
-        int i = event.getDisplay_html().indexOf("src/images/") + "src/images/".length();
+        int i = event.getDisplay_html().indexOf("src='/images/") + "src='/images/".length();
         int j = event.getDisplay_html().indexOf("_", i);
-        String rank = event.getDisplay_html().substring(i, j);
-
-        classes.append(" rank-");
-        classes.append(rank);
+        if (i > 0 && j > i) {
+            String rank = event.getDisplay_html().substring(i, j);
+            classes.append(" rank-");
+            classes.append(rank);
+        }
 
         return classes.toString().trim();
     }

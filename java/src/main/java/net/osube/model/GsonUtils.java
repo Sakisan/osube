@@ -11,7 +11,7 @@ public class GsonUtils {
 
     public static String getFieldAsString(JsonObject jsonObject, String field) {
         String result = null;
-        JsonElement jsonElement = jsonObject.get("user_id");
+        JsonElement jsonElement = jsonObject.get(field);
         if (!jsonElement.isJsonNull()) {
             result = jsonElement.getAsString();
         }
