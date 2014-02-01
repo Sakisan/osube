@@ -43,13 +43,12 @@ public class RestApi {
         HttpGet httpget = new HttpGet(full_request);
 
         String response_text = null;
-        try {
-            CloseableHttpResponse response = httpclient.execute(httpget);
+        try (CloseableHttpResponse response = httpclient.execute(httpget))
+        {
             InputStream inputStream = response.getEntity().getContent();
             StringWriter writer = new StringWriter();
             IOUtils.copy(inputStream, writer, "UTF-8");
             response_text = writer.toString();
-            response.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,6 +72,7 @@ public class RestApi {
         map.put("u", user_name);
         map.put("type", "string");
         map.put("m", mode.getMode());
+        map.put("event_days", "14");
         String json_response = removeListBracket(getResponseText("get_user", map));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
