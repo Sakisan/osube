@@ -22,7 +22,7 @@ public class Event {
             event.display_html = GsonUtils.getFieldAsString(jsonObject, "display_html");
             event.beatmap_id = GsonUtils.getFieldAsString(jsonObject, "beatmap_id");
             event.beatmapset_id = GsonUtils.getFieldAsString(jsonObject, "beatmapset_id");
-            event.epicfactor =  GsonUtils.getFieldAsString(jsonObject, "epicfactor");
+            event.epicfactor = Integer.parseInt(GsonUtils.getFieldAsString(jsonObject, "epicfactor"));
 
             String date_string =  GsonUtils.getFieldAsString(jsonObject, "date");
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -42,7 +42,7 @@ public class Event {
     private String beatmap_id;
     private String beatmapset_id;
     private Date date;
-    private String epicfactor;
+    private int epicfactor;
 
     public String getDisplay_html() {
         return display_html;
@@ -76,11 +76,11 @@ public class Event {
         this.date = date;
     }
 
-    public String getEpicfactor() {
+    public int getEpicfactor() {
         return epicfactor;
     }
 
-    public void setEpicfactor(String epicfactor) {
+    public void setEpicfactor(int epicfactor) {
         this.epicfactor = epicfactor;
     }
 
