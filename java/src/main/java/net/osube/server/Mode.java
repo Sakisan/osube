@@ -6,15 +6,15 @@ package net.osube.server;
  */
 public enum Mode {
 
-    STANDARD(0),TAIKO(1),CATCH_THE_BEAT(2),MANIA(3);
+    STANDARD("0"),TAIKO("1"),CATCH_THE_BEAT("2"),MANIA("3");
 
-    private int mode;
+    private String mode;
 
-    private Mode(int mode) {
+    private Mode(String mode) {
         this.mode = mode;
     }
 
-    public int getMode() {
+    public String getMode() {
         return mode;
     }
 }

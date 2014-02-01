@@ -1,14 +1,14 @@
 package net.osube.server;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringWriter;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +45,12 @@ public class RestApi {
             IOUtils.copy(inputStream, writer, "UTF-8");
             response_text = writer.toString();
             response.close();
+            if (response_text.charAt(0) == '[') {
+                response_text = response_text.substring(1);
+            }
+            if (response_text.charAt(response_text.length()-1) == ']') {
+                response_text = response_text.substring(0,response_text.length()-1);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,16 +59,33 @@ public class RestApi {
 
     }
 
-    public String getUser(String user, Mode mode) {
+    public User getUser(String user_name, Mode mode) {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("k", key);
-        map.put("u", user);
+        map.put("u", user_name);
         map.put("type", "string");
+        map.put("m", mode.getMode());
+        String json_response = getResponseText("get_user", map);
 
-        return getResponseText("get_user", map);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(User.class, new User.Deserializer());
+        Gson gson = gsonBuilder.create();
+
+        User user = null;
+
+        // The JSON data
+        // http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
+        try (Reader reader = new InputStreamReader(new ByteArrayInputStream(json_response.getBytes("UTF-8")), "UTF-8")) {
+            // Parse JSON to Java
+            user = gson.fromJson(reader, User.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return user;
     }
 
-    public String getUser(String user) {
+    public User getUser(String user) {
         return getUser(user, Mode.STANDARD);
     }
 }
