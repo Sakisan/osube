@@ -74,6 +74,7 @@ public class HtmlView {
             classes.append(" rank-");
             classes.append(rank);
         }
+        classes.append(" small-3 columns");
 
         return classes.toString().trim();
     }
