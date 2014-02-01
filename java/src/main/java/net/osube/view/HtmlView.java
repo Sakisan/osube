@@ -27,15 +27,10 @@ public class HtmlView {
 
         StringBuilder html = new StringBuilder();
         Iterator<Event> iterator = sorted_events.iterator();
-        int row = 0;
         while (iterator.hasNext()) {
-            row++;
-            if (row % 4 == 0) {
-                html.append("<div class='row'>");
-            }
             Event event = iterator.next();
 
-            html.append("<div class='");
+            html.append("<li class='");
             html.append(classes(event));
             html.append("'>");
             html.append(displayHtml(event));
@@ -45,11 +40,7 @@ public class HtmlView {
             String date = format.format(event.getDate());
             html.append(date);
             html.append("'></span>");
-            html.append("</div>");
-            if (row % 4 == 0) {
-                html.append("</div>");
-                row = 0;
-            }
+            html.append("</li>");
         }
         try {
             String dir_path = Server.HARP_DIR + File.separator + "public" + File.separator + "_events";

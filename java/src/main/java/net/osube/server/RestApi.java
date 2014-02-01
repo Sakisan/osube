@@ -72,7 +72,7 @@ public class RestApi {
         map.put("u", user_name);
         map.put("type", "string");
         map.put("m", mode.getMode());
-        map.put("event_days", "14");
+        map.put("event_days", "4");
         String json_response = removeListBracket(getResponseText("get_user", map));
 
         GsonBuilder gsonBuilder = new GsonBuilder();
