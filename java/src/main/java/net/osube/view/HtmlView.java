@@ -69,7 +69,7 @@ public class HtmlView {
 
         int i = event.getDisplay_html().indexOf("src='/images/") + "src='/images/".length();
         int j = event.getDisplay_html().indexOf("_", i);
-        if (i > 0 && j > i) {
+        if (i > "src='/images/".length() - 1 && j > i) {
             String rank = event.getDisplay_html().substring(i, j);
             classes.append(" rank-");
             classes.append(rank);
