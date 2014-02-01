@@ -81,6 +81,10 @@ public class HtmlView {
     private String displayHtml(Event event) {
         String display_html = event.getDisplay_html();
         display_html = StringUtils.replace(display_html, "src='/", "src='http://osu.ppy.sh/");
+        if (display_html.contains("achieved rank")) {
+            display_html = StringUtils.replace(display_html, "achieved rank ", "");
+            display_html =  StringUtils.replace(display_html, "_small.png", ".png");
+        }
         display_html = StringUtils.replace(display_html, "href='/", "href='http://osu.ppy.sh/");
         return display_html;
     }
