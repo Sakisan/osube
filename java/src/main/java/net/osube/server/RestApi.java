@@ -72,6 +72,7 @@ public class RestApi {
 
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(User.class, new User.Deserializer());
+        gsonBuilder.registerTypeAdapter(Event.class, new Event.Deserializer());
         Gson gson = gsonBuilder.create();
 
         User user = null;

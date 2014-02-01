@@ -34,8 +34,10 @@ public class User {
             user.count_rank_a = jsonObject.get("count_rank_a").getAsString();
             user.country = jsonObject.get("country").getAsString();
 
-            // Delegate the deserialization to the context
             user.events = jsonDeserializationContext.deserialize(jsonObject.get("events"), Event[].class);
+            for (Event event : user.events) {
+                event.setUser(user);
+            }
             return user;
         }
     }
@@ -186,6 +188,14 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Event[] getEvents() {
+        return events;
+    }
+
+    public void setEvents(Event[] events) {
+        this.events = events;
     }
 
     @Override
