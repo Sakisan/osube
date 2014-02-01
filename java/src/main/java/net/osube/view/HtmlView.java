@@ -2,6 +2,7 @@ package net.osube.view;
 
 import net.osube.model.Event;
 import net.osube.server.Server;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.*;
 import java.util.*;
@@ -29,7 +30,7 @@ public class HtmlView {
             Event event = iterator.next();
 
             html.append("<div>");
-            html.append(event.getDisplay_html());
+            html.append(processDisplayHtml(event));
             html.append("</div>");
         }
         try {
@@ -45,5 +46,12 @@ public class HtmlView {
             e.printStackTrace();
         }
 
+    }
+
+    private String processDisplayHtml(Event event) {
+        String display_html = event.getDisplay_html();
+        display_html = StringUtils.replace(display_html,"src='/","src='http://osu.ppy.sh/");
+        display_html = StringUtils.replace(display_html,"href='/","href='http://osu.ppy.sh/");
+        return display_html;
     }
 }
