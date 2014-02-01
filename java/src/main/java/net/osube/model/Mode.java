@@ -1,4 +1,4 @@
-package net.osube.server;
+package net.osube.model;
 
 /**
  * Created by: Sakisan (sakileon101 at gmail dot com)

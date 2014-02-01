@@ -2,6 +2,9 @@ package net.osube.server;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.osube.model.Event;
+import net.osube.model.Mode;
+import net.osube.model.User;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;

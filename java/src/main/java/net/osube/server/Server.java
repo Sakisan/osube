@@ -1,5 +1,9 @@
 package net.osube.server;
 
+import net.osube.model.Event;
+import net.osube.model.User;
+import net.osube.view.HtmlView;
+
 import java.util.*;
 
 /**
@@ -9,9 +13,11 @@ import java.util.*;
 public class Server {
 
     public static final TimeZone TIME_ZONE = TimeZone.getTimeZone("GMT+8:00");
+    public static String HARP_DIR;
 
     public static void main(String[] args) {
         String key = args[0];
+        HARP_DIR = args[1];
         RestApi api = new RestApi(key);
 
         String[] names = new String[]{"Sakisan", "KinkehW", "LarshMellow"};
@@ -20,26 +26,16 @@ public class Server {
             users.add(api.getUser(name));
         }
 
-        Set<Event> events = new TreeSet<>(new Comparator<Event>() {
-            @Override
-            public int compare(Event e1, Event e2) {
-                // order by date DESC
-                return - e1.getDate().compareTo(e2.getDate());
-            }
-        });
+        Set<Event> events = new HashSet<>();
 
         for (User user : users) {
             Collections.addAll(events, user.getEvents());
         }
 
-        Iterator<Event> iterator = events.iterator();
-        while (iterator.hasNext()) {
-            System.out.println("---");
-            Event event = iterator.next();
-            System.out.println(event.getDate());
-            System.out.println(event.getUser().getUsername());
-            System.out.println(event.getDisplay_html());
-        }
+        HtmlView htmlView = new HtmlView();
+        htmlView.render(events);
+
+
 
     }
 }

@@ -1,4 +1,4 @@
-package net.osube.server;
+package net.osube.model;
 
 import com.google.gson.*;
 
@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 public class User {
 
-    static class Deserializer implements JsonDeserializer<User> {
+    public static class Deserializer implements JsonDeserializer<User> {
         @Override
         public User deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
             JsonObject jsonObject = jsonElement.getAsJsonObject();

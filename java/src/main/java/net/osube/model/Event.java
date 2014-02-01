@@ -1,12 +1,12 @@
-package net.osube.server;
+package net.osube.model;
 
 import com.google.gson.*;
+import net.osube.server.Server;
 
 import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 
 /**
  * Created by: Sakisan (sakileon101 at gmail dot com)
@@ -14,7 +14,7 @@ import java.util.TimeZone;
  */
 public class Event {
 
-    static class Deserializer implements JsonDeserializer<Event> {
+    public static class Deserializer implements JsonDeserializer<Event> {
         @Override
         public Event deserialize(JsonElement jsonElement, Type type, JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
             JsonObject jsonObject = jsonElement.getAsJsonObject();
