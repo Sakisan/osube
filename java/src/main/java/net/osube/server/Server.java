@@ -55,7 +55,9 @@ public class Server {
         Set<Event> events = new HashSet<>();
 
         for (User user : users) {
-            Collections.addAll(events, user.getEvents());
+            if (user != null) {
+                Collections.addAll(events, user.getEvents());
+            }
         }
 
         HtmlView htmlView = new HtmlView();
