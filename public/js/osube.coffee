@@ -1,6 +1,8 @@
 # CoffeeScript
 (($) ->
-  $("span.timeago").timeago()
+  $(document).ready ->
+    $("span.timeago").timeago()
+    group_events()
 
   stack = []
 
@@ -13,6 +15,15 @@
       epic.addClass('active')
       stack.push($("#events").html())
       $(".epic-factor-1").remove();
+
+  group_events = () ->
+    events = $('.event')
+    time = ''
+    for event in events
+        next = $(event).find('.timeago').text()
+        if next != time
+          $('<li><h2 class="text-center">'+next+'</h2></li>').insertBefore(event)
+          time = next
 
   the_end = 'end'
 ) jQuery
