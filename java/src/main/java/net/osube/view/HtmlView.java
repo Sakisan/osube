@@ -79,6 +79,8 @@ public class HtmlView {
     }
 
     private String displayHtml(Event event) {
+        //TODO apply resources/xslt/event_html.xsl
+
         String display_html = event.getDisplay_html();
         display_html = StringUtils.replace(display_html, "src='/", "src='http://osu.ppy.sh/");
         display_html = StringUtils.replace(display_html, "_small.png", ".png");
