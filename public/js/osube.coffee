@@ -23,7 +23,7 @@
     for event in events
         next = $(event).find('.timeago').text()
         if next != time
-          $('<li class="header"><h2 class="text-center">'+next+'</h2></li>').insertBefore(event)
+          $('<li class="header"><h2 class="text-center">'+next.replace(' ago','&nbsp;ago')+'</h2></li>').insertBefore(event)
           time = next
 
   the_end = 'end'
