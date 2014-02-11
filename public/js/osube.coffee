@@ -15,6 +15,7 @@
       epic.addClass('active')
       stack.push($("#events").html())
       $(".epic-factor-1").remove();
+      $("li.header+li.header").prev().remove()
 
   group_events = () ->
     events = $('.event')
@@ -22,7 +23,7 @@
     for event in events
         next = $(event).find('.timeago').text()
         if next != time
-          $('<li><h2 class="text-center">'+next+'</h2></li>').insertBefore(event)
+          $('<li class="header"><h2 class="text-center">'+next+'</h2></li>').insertBefore(event)
           time = next
 
   the_end = 'end'
