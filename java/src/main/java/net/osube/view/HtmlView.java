@@ -63,6 +63,7 @@ public class HtmlView {
     private String classes(Event event) {
         StringBuilder classes = new StringBuilder();
         classes.append("event ");
+        classes.append("wow bounceInUp "); //WOW.js
         classes.append(event.getUser().getUsername());
         classes.append(" epic-factor-");
         classes.append(event.getEpicfactor());
